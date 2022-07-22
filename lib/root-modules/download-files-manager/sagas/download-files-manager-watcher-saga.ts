@@ -20,7 +20,11 @@ export function* downloadFilesManagerWatcherSaga({
     );
 
     while (true) {
-      const { debounced, latestAction } = yield race({
+      const { debounced, latestAction } = yield /* TODO: JSFIX could not patch the breaking change:
+      now race should be finished if any of effects resolved with END (by analogy with all)
+
+      Suggested fix: Only relevant if any of the raced effects resolve with an END value. In most scenarios, this change can be ignored.*/
+      race({
         debounced: delay(THROTTLE_TIMEOUT),
         latestAction: take(DOWNLOAD_FILE_MANAGER),
       });

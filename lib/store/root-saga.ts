@@ -24,7 +24,7 @@ export const createRootSaga = ({
   eventNameToCancelRequests,
   store,
 }: RootSagaParams) =>
-  function* rootSaga() {
+  (function* rootSaga() {
     const dependencies = store.dependencies;
     const isNode = !getIsClient();
 
@@ -81,4 +81,4 @@ export const createRootSaga = ({
         }),
       );
     }
-  };
+  });
